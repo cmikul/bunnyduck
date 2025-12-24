@@ -73,7 +73,7 @@ function startBunnyDuck() {
     localImageSource = './birthday_bunny.jpg';
 
   }
-  else if (dateNoYear === '10/18') {
+  else if (dateNoYear === '10/19') {
 
     myTitleText = "Happy Anniversary!";
     // Select kissing bunnies pic

@@ -6,6 +6,7 @@ const easternTime = new Date().toLocaleString("en-US", {
     day: "2-digit"
 })
 
+
 // Convert the date to hash signature
 async function hashStringSHA256(message) {
   // Encode the string as a Uint8Array (UTF-8 encoding is standard)
@@ -119,7 +120,7 @@ function startBunnyDuck() {
 
   // Set the attributes (source and alt text)
   imgElement.src = localImageSource;
-  imgElement.alt = "A photo of a duck";
+  imgElement.alt = "A photo of a duck or bunny";
 
   // Append the image to the container
   imgContainer.appendChild(imgElement);

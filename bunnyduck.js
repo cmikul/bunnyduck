@@ -52,36 +52,68 @@ hashStringSHA256(easternTime).then(hash => {
 
 });
 
+const dynamicBgColor = "#ffffff";
+document.body.style.backgroundColor = dynamicBgColor;
+
+function updatePageTheme(imageType) {
+    let newColor = "#f4f4f4"; // Default color from your CSS
+
+    if (imageType === "bunny") {
+        newColor = "#ffb6c1"; // Light pink for bunny
+    } else if (imageType === "duck") {
+        newColor = "#ffffe0"; // Light yellow for duck
+    } else if (imageType === "christmas") {
+        newColor = "#e97451"
+    } else if (imageType === "bday") {
+        newColor = "#abcdef"
+    } else if (imageType === "anniversary") {
+        newColor = "#ffc0cb"
+    }
+
+    // Apply the new color
+    document.body.style.backgroundColor = newColor;
+}
+
 function startBunnyDuck() {
 
-  // Get the date without the year to check if Christmas or Birthday
+  // Get the date without the year to check if special day
   const dateNoYear = easternTime.split('/').slice(0, 2).join('/');
 
   console.log("Date without year:", dateNoYear)
 
+  let imageType = "NaN";
+
   // Logic for duck or bunny day
   if (dateNoYear === '12/25') {
 
+    imageType = "christmas";
+
     myTitleText = "Merry Christmas!";
     // Select the christmas bunny pic
-    localImageSource = './christmas_bunnies.webp';
+    localImageSource = 'special_images/christmas_bunnies.webp';
 
   }
-  else if (dateNoYear === '10/5') {
+  else if (dateNoYear === '10/05') {
 
-    myTitleText = "Happy Bail-day!";
+    imageType = "bday";
+
+    myTitleText = "Happy Birthday!";
     // Select birthday bunny pic
-    localImageSource = './birthday_bunny.jpg';
+    localImageSource = 'special_images/birthday_bunny.jpg';
 
   }
   else if (dateNoYear === '10/19') {
 
+    imageType = "anniversary";
+
     myTitleText = "Happy Anniversary!";
     // Select kissing bunnies pic
-    localImageSource = './bunnies_kissing.jpg'
+    localImageSource = 'special_images/bunnies_kissing.jpg'
 
   }
   else if (isBunnyDay) {
+
+    imageType = "bunny";
 
     myTitleText = "Today is a Bunny Day!";
     // Select bunny pic based on hash signature
@@ -95,6 +127,8 @@ function startBunnyDuck() {
 
   } else {
 
+    imageType = "duck";
+
     myTitleText = "Today is a Duck Day!";
     // Select bunny pic based on hash signature
     const hashInt = parseInt(hashSignature.substring(0,8), 16);
@@ -106,6 +140,9 @@ function startBunnyDuck() {
     localImageSource = "./sorted_ducks_and_bunnies_dataset/duck/" + fileName;
     
   }
+
+  // Set background color
+  updatePageTheme(imageType);
 
   // Get the random bunny/duck image
   //const localImageSource = './sorted_ducks_and_bunnies_dataset/duck/0.661_039ac59de8424fbc.jpg'; 
